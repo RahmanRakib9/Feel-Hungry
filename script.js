@@ -4,8 +4,8 @@ document.getElementById("buttonId").addEventListener("click", () => {
         .then(res => res.json())
         .then(data => {
             const meals = data.meals;
-            const catchId = document.getElementById("cardsGroup");
-            catchId.innerHTML = "";
+            const cardsGroup = document.getElementById("cardsGroup");
+            cardsGroup.innerHTML = "";
             for (let i = 0; i < meals.length; i++) {
                 const element = meals[i];
                 const createDiv = document.createElement("div");
@@ -14,12 +14,12 @@ document.getElementById("buttonId").addEventListener("click", () => {
         <div class="card">
                 <img src="${meals[i].strMealThumb}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">${meals[i].strMeal}</h5>
+                  <h5 class="card-title" style="text-align:center">${meals[i].strMeal}</h5>
                 </div>
               </div>
         `;
                 createDiv.innerHTML = divInfo;
-                catchId.appendChild(createDiv);
+                cardsGroup.appendChild(createDiv);
                 createDiv.addEventListener("click", () => {
                     document.getElementById("divId").style.display = "block";
                     document.getElementById("imgId").src = meals[i].strMealThumb;
@@ -32,7 +32,7 @@ document.getElementById("buttonId").addEventListener("click", () => {
 });
 
 function addIngredientList(meal) {
-    const parentList = document.getElementById("ulId");
+    const parentList = document.getElementById("detailsDiv");
     parentList.innerHTML = "";
     let ingredients = [];
     let measure = [];
@@ -118,9 +118,9 @@ function addIngredientList(meal) {
         measure.push(meal.strMeasure20)
     }
     for (let i = 0; i < ingredients.length; i++) {
-        const li = document.createElement("li");
-        li.innerText = measure[i] + " " + ingredients[i];
-        parentList.appendChild(li);
+        const p = document.createElement("p");
+        p.className = 'liItem;'
+        p.innerText = measure[i] + " " + ingredients[i];
+        parentList.appendChild(p);
     }
-    parentList.appendChild(li);
 }

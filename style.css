@@ -34,3 +34,12 @@
     background-color: #ff855e !important;
     border: 0ch;
 }
+
+#imgId {
+    height: 300px;
+    width: 400px;
+}
+
+#divId {
+    text-align: center;
+}
